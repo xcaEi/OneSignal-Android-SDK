@@ -376,7 +376,7 @@ public class OneSignal {
    
    private static LocationGMS.LocationPoint lastLocationPoint;
    
-   static boolean shareLocation = true;
+   static boolean shareLocation = false; // Change default location sharing value (disable by default)
    static OneSignal.Builder mInitBuilder;
 
    private static Collection<JSONArray> unprocessedOpenedNotifis = new ArrayList<>();
@@ -1228,7 +1228,8 @@ public class OneSignal {
          deviceInfo.put("game_version", packageManager.getPackageInfo(packageName, 0).versionCode);
       } catch (PackageManager.NameNotFoundException e) {}
 
-      try {
+      // Disabled the request of installed packages on User Phone
+      /*try {
          List<PackageInfo> packList = packageManager.getInstalledPackages(0);
          JSONArray pkgs = new JSONArray();
          MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -1239,11 +1240,12 @@ public class OneSignal {
                pkgs.put(pck);
          }
          deviceInfo.put("pkgs", pkgs);
-      } catch (Throwable t) {}
+      } catch (Throwable t) {}*/
 
-      deviceInfo.put("net_type", osUtils.getNetType());
+      // Disabled the information concerning Phone (carrier, rooted)
+      /*deviceInfo.put("net_type", osUtils.getNetType());
       deviceInfo.put("carrier", osUtils.getCarrierName());
-      deviceInfo.put("rooted", RootToolsInternalMethods.isRooted());
+      deviceInfo.put("rooted", RootToolsInternalMethods.isRooted());*/
 
       OneSignalStateSynchronizer.updateDeviceInfo(deviceInfo);
 
