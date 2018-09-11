@@ -84,7 +84,9 @@ class TrackGooglePurchase {
    }
 
    static boolean CanTrack(Context context) {
-      if (iapEnabled == -99)
+      // Disable to prevent tracking of User InApp Purchases
+      return false;
+      /*if (iapEnabled == -99)
          iapEnabled = context.checkCallingOrSelfPermission("com.android.vending.BILLING");
       try {
          if (iapEnabled == PackageManager.PERMISSION_GRANTED)
@@ -94,7 +96,7 @@ class TrackGooglePurchase {
          return false;
       }
 
-      return (iapEnabled == PackageManager.PERMISSION_GRANTED);
+      return (iapEnabled == PackageManager.PERMISSION_GRANTED);*/
    }
 
    void trackIAP() {
