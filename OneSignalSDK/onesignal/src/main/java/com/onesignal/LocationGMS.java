@@ -117,8 +117,10 @@ class LocationGMS {
    }
    
    private static boolean hasLocationPermission(Context context) {
-      return ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_FINE_LOCATION") == PackageManager.PERMISSION_GRANTED
-          || ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_COARSE_LOCATION") == PackageManager.PERMISSION_GRANTED;
+      // Act as if Application does not have location permissions
+      return false;
+      /*return ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_FINE_LOCATION") == PackageManager.PERMISSION_GRANTED
+          || ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_COARSE_LOCATION") == PackageManager.PERMISSION_GRANTED;*/
    }
 
    static void getLocation(Context context, boolean promptLocation, LocationHandler handler) {
